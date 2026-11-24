@@ -1,0 +1,17 @@
+{
+  "name": "Control Tower",
+  "short_name": "Control Tower",
+  "description": "Operate a fleet of AI coding agents from one browser.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#05080d",
+  "theme_color": "#05080d",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

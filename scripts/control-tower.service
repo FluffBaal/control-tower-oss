@@ -1,0 +1,28 @@
+# Control Tower — systemd user unit (SPEC §15, WSL2 lifecycle).
+#
+# Install (inside WSL2, requires systemd — enable in /etc/wsl.conf: [boot] systemd=true):
+#   mkdir -p ~/.config/systemd/user
+#   cp scripts/control-tower.service ~/.config/systemd/user/
+#   # edit WorkingDirectory below to your checkout path
+#   systemctl --user daemon-reload
+#   systemctl --user enable --now control-tower
+#   loginctl enable-linger "$USER"   # keep the unit running after you log out
+#
+# This restarts the Tower on crash and starts it on boot. Combine with the Windows-side
+# keepalive (scripts/keepalive.ps1) so the WSL VM itself isn't torn down while you're
+# away — otherwise tmux and every agent die with the VM.
+
+[Unit]
+Description=Control Tower
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/repos/control-tower
+ExecStart=/usr/bin/env npm start
+Restart=on-failure
+RestartSec=3
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=default.target

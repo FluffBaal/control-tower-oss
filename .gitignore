@@ -1,0 +1,23 @@
+node_modules/
+dist/
+web-dist/
+*.log
+.DS_Store
+.ct-local/
+.local-context/
+.env
+.env.*
+
+# Local Tower state, exported backups, and manual browser recordings can contain
+# credentials, private project content, and terminal output.
+.ct/
+.ct-worktrees/
+ct-backup-*.tar.gz
+e2e-*-shots/
+coverage/
+
+# Playwright / test-kit run artifacts
+test-results/
+blob/
+playwright-report/
+**/blob/
